@@ -4,7 +4,7 @@ import {
   ejsEngine,
   oakAdapter,
 } from 'https://deno.land/x/view_engine@v10.5.1/mod.ts';
-import db from './utils/database.js';
+// import db from './utils/database.js';
 
 const app = new Application();
 const router = new Router();
@@ -23,15 +23,16 @@ app.use(
 
 app.use(router.routes());
 app.use(router.allowedMethods());
-const collection = db.collection('deno');
+// const collection = db.collection('deno');
 router
-  .get('/', async ctx => {
-    const data = await collection.find().toArray();
-    ctx.render('index.ejs', { data });
+  .get('/', ctx => {
+    ctx.response.body = 'Hello World';
+    // const data = await collection.find().toArray();
+    // ctx.render('index.ejs', { data });
   })
-  .post('/post', async ctx => {
-    const value = await ctx.request.body('json').value;
-    collection.insertOne({ note: value.note });
+  .post('/post', ctx => {
+    // const value = await ctx.request.body('json').value;
+    // collection.insertOne({ note: value.note });
     ctx.response.status = 201;
     ctx.response.body = { message: 'Created' };
   });
