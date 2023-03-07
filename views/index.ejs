@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h2>Quick Notes</h2>
+    Hello, Welcome to quick notes, created by @divofred.<br />
+    <textarea name="notes" id="notes" cols="30" rows="10"></textarea>
+    <button id="save">Save</button>
+    <button class="getnotes"></button>
+
+    <ul></ul>
+    <script>
+      const hello = JSON.parse('<%- JSON.stringify(data) %>');
+
+      const notes = document.getElementById('notes');
+      const save = document.getElementById('save');
+      const getnotes = document.querySelector('.getnotes');
+      const ul = document.querySelector('ul');
+
+      save.addEventListener('click', async () => {
+        const text = notes.value;
+        const response = await fetch('/post', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ note: text }),
+        });
+        notes.value = '';
+        const li = document.createElement('li');
+        li.innerText = text;
+        ul.appendChild(li);
+      });
+      hello.forEach(element => {
+        let note = element.note;
+
+        const li = document.createElement('li');
+        li.innerText = note;
+        ul.appendChild(li);
+      });
+    </script>
+  </body>
+</html>
