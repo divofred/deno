@@ -4,7 +4,7 @@ import {
   ejsEngine,
   oakAdapter,
 } from 'https://deno.land/x/view_engine@v10.5.1/mod.ts';
-// import db from './utils/database.js';
+import db from './utils/database.js';
 
 const app = new Application();
 const router = new Router();
