@@ -1,7 +1,6 @@
 import { MongoClient } from 'https://deno.land/x/mongo/mod.ts';
-import { load } from 'https://deno.land/x/tiny_env/mod.ts';
+import 'https://deno.land/std@0.178.0/dotenv/load.ts';
 
-load();
 const client = new MongoClient();
 const MONGO_URI = Deno.env.get('MONGO_URI');
 
